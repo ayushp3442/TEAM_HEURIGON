@@ -27,10 +27,17 @@ class ApiSlotService implements SlotService {
   // 11. GET /slots/mine
   @override
   Future<List<Slot>> mine() async {
-    final res = await _dio.get('/slots/mine');
-    return (res.data as List<dynamic>)
-        .map((e) => Slot.fromJson(e as Map<String, dynamic>))
-        .toList();
+    try {
+      final res = await _dio.get('/slots/mine');
+      return (res.data as List<dynamic>)
+          .map((e) => Slot.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 404) {
+        return [];
+      }
+      rethrow;
+    }
   }
 
   // 12. DELETE /slots/{id}

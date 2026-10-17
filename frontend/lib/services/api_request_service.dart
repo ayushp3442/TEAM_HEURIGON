@@ -40,12 +40,19 @@ class ApiRequestService implements RequestService {
   // 16. GET /requests/incoming
   @override
   Future<List<SessionRequest>> incoming({String? status}) async {
-    final res = await _dio.get('/requests/incoming', queryParameters: {
-      if (status != null) 'status': status,
-    });
-    return (res.data as List<dynamic>)
-        .map((e) => SessionRequest.fromJson(e as Map<String, dynamic>))
-        .toList();
+    try {
+      final res = await _dio.get('/requests/incoming', queryParameters: {
+        if (status != null) 'status': status,
+      });
+      return (res.data as List<dynamic>)
+          .map((e) => SessionRequest.fromJson(e as Map<String, dynamic>))
+          .toList();
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 404) {
+        return [];
+      }
+      rethrow;
+    }
   }
 
   // 17. PATCH /requests/{id}/status

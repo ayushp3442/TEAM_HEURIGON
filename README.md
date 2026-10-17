@@ -7,7 +7,7 @@ StudyCircle is a web app where students find senior students who solved the same
 | | |
 |---|---|
 | **Live project** | https://teamheurigon.vercel.app |
-| **Demo video (3–5 min)** | `<PASTE YOUTUBE (UNLISTED) OR GOOGLE DRIVE LINK HERE>` |
+| **Demo video (3–5 min)** | https://drive.google.com/drive/folders/1GeixOEnNFZKJ3mVLlts4mzljs3Gt9FH-?usp=drive_link |
 | **Backend API (Railway)** | https://teamheurigon-production.up.railway.app/api |
 | **API docs (Swagger UI)** | https://teamheurigon-production.up.railway.app/swagger-ui.html |
 
@@ -238,12 +238,10 @@ Open https://teamheurigon.vercel.app and register your own accounts. Nothing is 
 
 | Name | Role |
 |---|---|
-| `<Member 1 name>` | Backend core (auth, security, database) |
-| `<Member 2 name>` | Backend features (tutors, slots, requests) |
-| `<Member 3 name>` | Frontend core (app shell, auth, chat) |
-| `<Member 4 name>` | Frontend features (browse, dashboard, requests) |
+| Ayush Pandey | Frontend & Deployment |
+| Priyanshu Patel | Backend & Database |
+| Abhishek Pandey | Integration & Features |
 
-*(Edit names and roles to match your team.)*
 
 ---
 
