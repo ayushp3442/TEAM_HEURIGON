@@ -1,0 +1,23 @@
+{
+    "name": "StudyCircle",
+    "short_name": "StudyCircle",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#FAF7F2",
+    "theme_color": "#1B4332",
+    "description": "StudyCircle: Connect with verified student peer tutors on campus. Learn Together. Grow Together.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "favicon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "favicon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

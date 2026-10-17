@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  NOTE FOR PRODUCTION DEPLOYMENT:
+  Replace 'https://peertutoring.acm.org' with your deployed production domain hostname.
+  Hosting Requirement: Because usePathUrlStrategy() is enabled for clean paths without '#',
+  the hosting server (Nginx, Netlify, Vercel, Firebase Hosting, S3/CloudFront) must rewrite
+  all incoming route paths to /index.html.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://peertutoring.acm.org/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://peertutoring.acm.org/login</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://peertutoring.acm.org/register</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://peertutoring.acm.org/privacy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://peertutoring.acm.org/terms</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>

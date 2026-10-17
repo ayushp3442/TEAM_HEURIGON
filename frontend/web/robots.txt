@@ -1,0 +1,17 @@
+# robots.txt for Peer Tutoring Board
+User-agent: *
+Allow: /
+Allow: /login
+Allow: /register
+Allow: /privacy
+Allow: /terms
+
+# Disallow private user/tutor app routes
+Disallow: /dashboard
+Disallow: /dashboard/
+Disallow: /dashboard/profile
+Disallow: /my-requests
+Disallow: /chats
+Disallow: /chats/
+
+Sitemap: https://peertutoring.acm.org/sitemap.xml
