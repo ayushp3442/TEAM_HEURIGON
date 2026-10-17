@@ -1,0 +1,28 @@
+# Environment variables
+.env
+*.env.local
+
+# Build artifacts
+target/
+*.class
+*.jar
+*.war
+
+# IDE & Editor files
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Docs
+Architecture.md
+DEVIATIONS.md
