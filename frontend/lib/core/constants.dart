@@ -6,7 +6,7 @@ const String kAppTagline = 'Learn Together. Grow Together.';
 
 const String kBaseUrl = String.fromEnvironment(
   'API_BASE_URL',
-  defaultValue: 'http://localhost:8080/api',
+  defaultValue: 'https://teamheurigon-production.up.railway.app/',
 );
 const String kContactEmail = String.fromEnvironment('CONTACT_EMAIL');
 const String kTokenKey = 'auth_token';
