@@ -19,7 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.Clock;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.ZoneId;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -29,6 +29,8 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ChatServiceTest {
+
+    private static final ZoneId KOLKATA = ZoneId.of("Asia/Kolkata");
 
     @Mock
     private ChatMessageRepository messageRepo;
@@ -90,7 +92,7 @@ class ChatServiceTest {
     }
 
     private Clock createFixedClock(LocalDateTime ldt) {
-        return Clock.fixed(ldt.toInstant(ZoneOffset.UTC), ZoneOffset.UTC);
+        return Clock.fixed(ldt.atZone(KOLKATA).toInstant(), KOLKATA);
     }
 
     private ChatService createServiceWithClock(LocalDateTime ldt) {

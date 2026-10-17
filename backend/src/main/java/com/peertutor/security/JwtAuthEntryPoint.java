@@ -9,6 +9,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
@@ -24,6 +25,12 @@ public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
     private static final ObjectMapper MAPPER = new ObjectMapper();
     private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
+    private final Clock clock;
+
+    public JwtAuthEntryPoint(Clock clock) {
+        this.clock = clock;
+    }
+
     @Override
     public void commence(HttpServletRequest request,
                          HttpServletResponse response,
@@ -35,7 +42,7 @@ public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
         body.put("status", 401);
         body.put("error", "Unauthorized");
         body.put("message", "Authentication required");
-        body.put("timestamp", LocalDateTime.now().format(FMT));
+        body.put("timestamp", LocalDateTime.now(clock).format(FMT));
 
         MAPPER.writeValue(response.getOutputStream(), body);
     }

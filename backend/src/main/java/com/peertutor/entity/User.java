@@ -33,6 +33,6 @@ public class User {
 
     @PrePersist
     void prePersist() {
-        if (createdAt == null) createdAt = LocalDateTime.now();
+        if (createdAt == null) createdAt = LocalDateTime.now(com.peertutor.util.ClockHolder.getClock());
     }
 }

@@ -40,7 +40,7 @@ public class ChatMessage {
     @PrePersist
     void prePersist() {
         if (sentAt == null) {
-            sentAt = LocalDateTime.now();
+            sentAt = LocalDateTime.now(com.peertutor.util.ClockHolder.getClock());
         }
     }
 }

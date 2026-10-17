@@ -23,6 +23,7 @@ public class AuthService {
     private final TutorProfileRepository tutorProfileRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
+    private final java.time.Clock clock;
 
     @Transactional
     public AuthResponse register(RegisterRequest req) {
@@ -36,6 +37,7 @@ public class AuthService {
                 .email(email)
                 .passwordHash(passwordEncoder.encode(req.password()))
                 .role(req.role())
+                .createdAt(java.time.LocalDateTime.now(clock))
                 .build();
 
         user = userRepository.save(user);

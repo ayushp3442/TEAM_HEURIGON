@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
@@ -24,14 +25,20 @@ public class GlobalExceptionHandler {
 
     private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
+    private final Clock clock;
+
+    public GlobalExceptionHandler(Clock clock) {
+        this.clock = clock;
+    }
+
     // ---- helpers --------------------------------------------------------
 
-    private static Map<String, Object> body(int status, String error, String message) {
+    private Map<String, Object> body(int status, String error, String message) {
         Map<String, Object> m = new LinkedHashMap<>();
         m.put("status", status);
         m.put("error", error);
         m.put("message", message);
-        m.put("timestamp", LocalDateTime.now().format(FMT));
+        m.put("timestamp", LocalDateTime.now(clock).format(FMT));
         return m;
     }
 
