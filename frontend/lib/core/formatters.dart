@@ -9,7 +9,8 @@ class AppFormatters {
   static final _dateTime = DateFormat("EEE d MMM, h:mm a");
   static final _dateOnly = DateFormat("EEE d MMM");
   static final _timeOnly = DateFormat("h:mm a");
-  static final _apiDate  = DateFormat("yyyy-MM-dd");
+  static final _apiDate     = DateFormat("yyyy-MM-dd");
+  static final _apiDateTime = DateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
   /// "Tue 20 Oct, 3:00 PM"
   static String dateTime(DateTime dt) => _dateTime.format(dt);
@@ -22,6 +23,9 @@ class AppFormatters {
 
   /// "2026-10-20" — for API query params
   static String apiDate(DateTime dt) => _apiDate.format(dt);
+
+  /// "2026-10-20T15:00:00" — naive local date-time with NO offset and NO trailing Z
+  static String apiDateTime(DateTime dt) => _apiDateTime.format(dt);
 
   /// Remaining time from now until [deadline]: "18h 32m left" or "Closed"
   static String remaining(DateTime deadline) {

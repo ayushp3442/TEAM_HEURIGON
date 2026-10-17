@@ -1,8 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:provider/provider.dart';
 import 'core/theme.dart';
 import 'core/router.dart';
+import 'core/api_client.dart';
+import 'core/formatters.dart';
 import 'providers/auth_provider.dart';
 import 'services/auth_service.dart';
 import 'services/subject_service.dart';
@@ -50,9 +53,29 @@ class _PeerTutoringAppState extends State<PeerTutoringApp> {
   @override
   void initState() {
     super.initState();
+    if (kDebugMode) {
+      _checkHealthClock();
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<AuthProvider>().restoreSession();
     });
+  }
+
+  Future<void> _checkHealthClock() async {
+    try {
+      final res = await ApiClient.dio.get('/health');
+      final data = res.data is Map ? res.data as Map : {};
+      final serverTime = data['serverTime'] ?? 'N/A';
+      final timeZone = data['timeZone'] ?? 'N/A';
+      final localTime = AppFormatters.apiDateTime(DateTime.now());
+      debugPrint('====================================');
+      debugPrint('[CLOCK CHECK] Backend health status: ${data['status']}');
+      debugPrint('[CLOCK CHECK] Backend serverTime:   $serverTime (Zone: $timeZone)');
+      debugPrint('[CLOCK CHECK] Browser localTime:    $localTime');
+      debugPrint('====================================');
+    } catch (e) {
+      debugPrint('[CLOCK CHECK] Backend health check failed on startup: $e');
+    }
   }
 
   @override
