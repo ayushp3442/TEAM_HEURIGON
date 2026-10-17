@@ -18,14 +18,32 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
+    private static final String LOCAL_DEFAULT_SECRET = "change-this-to-a-long-random-secret-at-least-32-chars!!";
+
     private final SecretKey key;
     private final long expirationMs;
     private final Clock clock;
 
-    public JwtUtil(@Value("${app.jwt.secret}") String secret,
+    public JwtUtil(@Value("${app.jwt.secret:}") String secret,
                    @Value("${app.jwt.expiration-ms}") long expirationMs,
+                   @Value("${app.env:local}") String appEnv,
                    Clock clock) {
-        this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+        String effectiveSecret = secret;
+        boolean isProduction = "production".equalsIgnoreCase(appEnv);
+
+        if (isProduction) {
+            if (effectiveSecret == null || effectiveSecret.isBlank() || effectiveSecret.equals(LOCAL_DEFAULT_SECRET) || effectiveSecret.length() < 32) {
+                throw new IllegalStateException("FATAL: In production environment (APP_ENV=production), JWT_SECRET must be explicitly set to a unique, random string of at least 32 characters (found insecure default or length < 32).");
+            }
+        } else {
+            if (effectiveSecret == null || effectiveSecret.isBlank()) {
+                effectiveSecret = LOCAL_DEFAULT_SECRET;
+            } else if (effectiveSecret.length() < 32) {
+                throw new IllegalStateException("FATAL: JWT_SECRET must be at least 32 characters long.");
+            }
+        }
+
+        this.key = Keys.hmacShaKeyFor(effectiveSecret.getBytes(StandardCharsets.UTF_8));
         this.expirationMs = expirationMs;
         this.clock = clock;
     }

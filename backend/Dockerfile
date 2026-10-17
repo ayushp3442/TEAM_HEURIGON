@@ -27,5 +27,8 @@ COPY --from=builder /app/target/*.jar app.jar
 # Expose Spring Boot default port
 EXPOSE 8080
 
-# Run with UTC timezone configuration
-ENTRYPOINT ["java", "-Duser.timezone=UTC", "-jar", "app.jar"]
+# Environment options with sane defaults for containerized memory and UTC timezone
+ENV JAVA_OPTS="-XX:MaxRAMPercentage=75 -Duser.timezone=UTC"
+
+# Run with shell execution so JAVA_OPTS is dynamically expanded and signals are propagated via exec
+ENTRYPOINT ["sh", "-c", "exec java $JAVA_OPTS -jar app.jar"]
