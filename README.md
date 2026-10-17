@@ -240,7 +240,8 @@ Open https://teamheurigon.vercel.app and register your own accounts. Nothing is 
 |---|---|
 | Ayush Pandey | Frontend & Deployment |
 | Priyanshu Patel | Backend & Database |
-| Abhishek Pandey | Integration & Features |
+| Akhilesh Yadav | Backend Features & Integration |
+| Krishna Yadav | UI/UX & Testing |
 
 
 ---
