@@ -1,4 +1,5 @@
 // Architecture.md Section 6.5 — Slots (endpoints 7, 10, 11, 12)
+import '../core/formatters.dart';
 
 enum SlotMode {
   online,
@@ -43,8 +44,8 @@ class Slot {
 
   Map<String, dynamic> toJson() => {
         'id':             id,
-        'startTime':      startTime.toIso8601String().substring(0, 19),
-        'endTime':        endTime.toIso8601String().substring(0, 19),
+        'startTime':      AppFormatters.apiDateTime(startTime),
+        'endTime':        AppFormatters.apiDateTime(endTime),
         'mode':           mode.toApiString(),
         'locationOrLink': locationOrLink,
         'booked':         booked,

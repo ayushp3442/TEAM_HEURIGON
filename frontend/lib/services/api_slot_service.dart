@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import '../core/api_client.dart';
+import '../core/formatters.dart';
 import '../models/slot.dart';
 import 'slot_service.dart';
 
@@ -15,8 +16,8 @@ class ApiSlotService implements SlotService {
     required String   locationOrLink,
   }) async {
     final res = await _dio.post('/slots', data: {
-      'startTime':      startTime.toIso8601String().substring(0, 19),
-      'endTime':        endTime.toIso8601String().substring(0, 19),
+      'startTime':      AppFormatters.apiDateTime(startTime),
+      'endTime':        AppFormatters.apiDateTime(endTime),
       'mode':           mode,
       'locationOrLink': locationOrLink,
     });

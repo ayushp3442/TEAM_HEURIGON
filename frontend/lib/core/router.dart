@@ -15,7 +15,7 @@ import '../screens/tutor_dashboard_screen.dart';
 import '../screens/edit_profile_screen.dart';
 import '../screens/chats_screen.dart';
 import '../screens/chat_screen.dart';
-import '../screens/dev_widgets_screen.dart';
+
 import '../core/theme.dart';
 import '../core/constants.dart';
 
@@ -73,8 +73,6 @@ GoRouter buildRouter(BuildContext context) {
         builder: (_, __) => const TermsOfServiceScreen(),
       ),
 
-      // Dev-only widget showcase
-      GoRoute(path: '/dev/widgets', builder: (_, __) => const DevWidgetsScreen()),
 
       // Shell wraps all authenticated screens
       ShellRoute(

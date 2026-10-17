@@ -1,32 +1,25 @@
-// Single place that returns mock or real service based on dev_flags.dart.
-// In Stage F11: set all flags to false, then delete dev_mocks/ and this file.
-import '../dev_flags.dart';
-import '../services/auth_service.dart';
-import '../services/subject_service.dart';
-import '../services/tutor_service.dart';
-import '../services/slot_service.dart';
-import '../services/request_service.dart';
-import '../services/chat_service.dart';
-import '../services/api_auth_service.dart';
-import '../services/api_subject_service.dart';
-import '../services/api_tutor_service.dart';
-import '../services/api_slot_service.dart';
-import '../services/api_request_service.dart';
-import '../services/api_chat_service.dart';
-import '../dev_mocks/mock_auth_service.dart';
-import '../dev_mocks/mock_subject_service.dart';
-import '../dev_mocks/mock_tutor_service.dart';
-import '../dev_mocks/mock_slot_service.dart';
-import '../dev_mocks/mock_request_service.dart';
-import '../dev_mocks/mock_chat_service.dart';
+// lib/services/service_locator.dart
+// Returns the real API services — mocks removed in Stage I2.
+import 'auth_service.dart';
+import 'subject_service.dart';
+import 'tutor_service.dart';
+import 'slot_service.dart';
+import 'request_service.dart';
+import 'chat_service.dart';
+import 'api_auth_service.dart';
+import 'api_subject_service.dart';
+import 'api_tutor_service.dart';
+import 'api_slot_service.dart';
+import 'api_request_service.dart';
+import 'api_chat_service.dart';
 
 class ServiceLocator {
   ServiceLocator._();
 
-  static AuthService     get auth     => useMockAuth     ? MockAuthService()     : ApiAuthService();
-  static SubjectService  get subjects => useMockSubjects ? MockSubjectService()  : ApiSubjectService();
-  static TutorService    get tutors   => useMockTutors   ? MockTutorService()    : ApiTutorService();
-  static SlotService     get slots    => useMockSlots    ? MockSlotService()     : ApiSlotService();
-  static RequestService  get requests => useMockRequests ? MockRequestService()  : ApiRequestService();
-  static ChatService     get chat     => useMockChat     ? MockChatService()     : ApiChatService();
+  static AuthService    get auth     => ApiAuthService();
+  static SubjectService get subjects => ApiSubjectService();
+  static TutorService   get tutors   => ApiTutorService();
+  static SlotService    get slots    => ApiSlotService();
+  static RequestService get requests => ApiRequestService();
+  static ChatService    get chat     => ApiChatService();
 }

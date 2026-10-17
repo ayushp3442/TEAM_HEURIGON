@@ -32,5 +32,9 @@ void main() {
     );
     await tester.pump();
     expect(find.byType(MaterialApp), findsOneWidget);
+
+    // Clean up tree to resolve precache / image timers
+    await tester.pumpWidget(const SizedBox());
+    await tester.pump(const Duration(seconds: 2));
   });
 }
